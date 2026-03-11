@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 mb-8">
     <div>
@@ -28,7 +26,28 @@
     <div class="xl:col-span-4 ens-card p-6">
         <div class="flex items-center justify-between mb-5">
             <h2 class="text-lg font-semibold">Informations générales</h2>
-            <x-badge-status status="returned_for_revision" />
+            <?php if (isset($component)) { $__componentOriginal435aefee4aa6dd7f20df034696ae03b9 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal435aefee4aa6dd7f20df034696ae03b9 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.badge-status','data' => ['status' => 'returned_for_revision']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('badge-status'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['status' => 'returned_for_revision']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal435aefee4aa6dd7f20df034696ae03b9)): ?>
+<?php $attributes = $__attributesOriginal435aefee4aa6dd7f20df034696ae03b9; ?>
+<?php unset($__attributesOriginal435aefee4aa6dd7f20df034696ae03b9); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal435aefee4aa6dd7f20df034696ae03b9)): ?>
+<?php $component = $__componentOriginal435aefee4aa6dd7f20df034696ae03b9; ?>
+<?php unset($__componentOriginal435aefee4aa6dd7f20df034696ae03b9); ?>
+<?php endif; ?>
         </div>
 
         <div class="space-y-4 text-sm">
@@ -126,7 +145,7 @@
     </div>
 </div>
 
-@php
+<?php
     $workflowSteps = [
         [
             'title' => 'Document créé',
@@ -171,8 +190,31 @@
             'actor' => 'Direction / Informatique',
         ],
     ];
-@endphp
+?>
 
-<x-workflow-timeline :steps="$workflowSteps" />
+<?php if (isset($component)) { $__componentOriginalfed8860d116b3f02bb30c55071819700 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfed8860d116b3f02bb30c55071819700 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.workflow-timeline','data' => ['steps' => $workflowSteps]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('workflow-timeline'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['steps' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($workflowSteps)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-@endsection
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfed8860d116b3f02bb30c55071819700)): ?>
+<?php $attributes = $__attributesOriginalfed8860d116b3f02bb30c55071819700; ?>
+<?php unset($__attributesOriginalfed8860d116b3f02bb30c55071819700); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfed8860d116b3f02bb30c55071819700)): ?>
+<?php $component = $__componentOriginalfed8860d116b3f02bb30c55071819700; ?>
+<?php unset($__componentOriginalfed8860d116b3f02bb30c55071819700); ?>
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Lenovo\Desktop\ens-bordereaux\ens-bordereaux\resources\views/documents/show.blade.php ENDPATH**/ ?>

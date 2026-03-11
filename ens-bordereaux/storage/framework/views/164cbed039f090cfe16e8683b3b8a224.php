@@ -31,3 +31,4 @@
         </div>
     </div>
 </nav>
+<?php /**PATH C:\Users\Lenovo\Desktop\ens-bordereaux\ens-bordereaux\resources\views/components/navbar.blade.php ENDPATH**/ ?>

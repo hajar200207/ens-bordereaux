@@ -64,3 +64,4 @@
         </div>
     </div>
 </aside>
+<?php /**PATH C:\Users\Lenovo\Desktop\ens-bordereaux\ens-bordereaux\resources\views/components/sidebar.blade.php ENDPATH**/ ?>

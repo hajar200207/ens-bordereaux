@@ -1,7 +1,7 @@
 @props(['status' => 'submitted'])
 
 @php
-    $map = [
+    $styles = [
         'submitted' => 'bg-blue-100 text-blue-700',
         'under_review' => 'bg-indigo-100 text-indigo-700',
         'assigned' => 'bg-cyan-100 text-cyan-700',
@@ -26,11 +26,8 @@
         'completed' => 'Terminé',
         'archived' => 'Archivé',
     ];
-
-    $class = $map[$status] ?? 'bg-slate-100 text-slate-700';
-    $label = $labels[$status] ?? ucfirst(str_replace('_', ' ', $status));
 @endphp
 
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $class }}">
-    {{ $label }}
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $styles[$status] ?? 'bg-slate-100 text-slate-700' }}">
+    {{ $labels[$status] ?? $status }}
 </span>
