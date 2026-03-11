@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --ens-orange: #ef8748;
+    --ens-blue: #1F4E79;
+    --ens-green: #16a34a;
+    --ens-red: #dc2626;
+    --ens-yellow: #f59e0b;
+    --ens-bg: #f5f7fb;
+    --ens-white: #ffffff;
+}
+
+@layer utilities {
+    .bg-ens-orange {
+        background-color: var(--ens-orange);
+    }
+
+    .bg-ens-blue {
+        background-color: var(--ens-blue);
+    }
+
+    .bg-ens-green {
+        background-color: var(--ens-green);
+    }
+
+    .bg-ens-red {
+        background-color: var(--ens-red);
+    }
+
+    .bg-ens-yellow {
+        background-color: var(--ens-yellow);
+    }
+
+    .bg-ens-bg {
+        background-color: var(--ens-bg);
+    }
+
+    .bg-ens-white {
+        background-color: var(--ens-white);
+    }
+
+    .text-ens-orange {
+        color: var(--ens-orange);
+    }
+
+    .text-ens-blue {
+        color: var(--ens-blue);
+    }
+
+    .text-ens-green {
+        color: var(--ens-green);
+    }
+
+    .text-ens-red {
+        color: var(--ens-red);
+    }
+
+    .text-ens-yellow {
+        color: var(--ens-yellow);
+    }
+
+    .border-ens-orange {
+        border-color: var(--ens-orange);
+    }
+
+    .border-ens-blue {
+        border-color: var(--ens-blue);
+    }
+
+    .border-ens-green {
+        border-color: var(--ens-green);
+    }
+
+    .border-ens-red {
+        border-color: var(--ens-red);
+    }
+
+    .border-ens-yellow {
+        border-color: var(--ens-yellow);
+    }
+}
