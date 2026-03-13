@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --ens-orange: #ef8748;
+    --ens-blue: #1F4E79;
+    --ens-green: #16a34a;
+    --ens-red: #dc2626;
+    --ens-yellow: #f59e0b;
+    --ens-bg: #f5f7fb;
+    --ens-white: #ffffff;
+    --ens-text: #0f172a;
+    --ens-muted: #64748b;
+    --ens-border: #e2e8f0;
+}
+.cursor-glow-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.cursor-glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(250px circle at var(--x, 50%) var(--y, 50%),
+            rgba(31, 78, 121, 0.10),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity .25s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cursor-glow-card:hover::before {
+    opacity: 1;
+}
+
+.cursor-glow-card>* {
+    position: relative;
+    z-index: 1;
+}
+@layer base {
+    body {
+        background-color: var(--ens-bg);
+        color: var(--ens-text);
+    }
+}
+
+@layer utilities {
+    .bg-ens-orange {
+        background-color: var(--ens-orange);
+    }
+
+    .bg-ens-blue {
+        background-color: var(--ens-blue);
+    }
+
+    .bg-ens-green {
+        background-color: var(--ens-green);
+    }
+
+    .bg-ens-red {
+        background-color: var(--ens-red);
+    }
+
+    .bg-ens-yellow {
+        background-color: var(--ens-yellow);
+    }
+
+    .bg-ens-bg {
+        background-color: var(--ens-bg);
+    }
+
+    .text-ens-orange {
+        color: var(--ens-orange);
+    }
+
+    .text-ens-blue {
+        color: var(--ens-blue);
+    }
+
+    .text-ens-green {
+        color: var(--ens-green);
+    }
+
+    .text-ens-red {
+        color: var(--ens-red);
+    }
+
+    .text-ens-yellow {
+        color: var(--ens-yellow);
+    }
+
+    .text-ens-muted {
+        color: var(--ens-muted);
+    }
+
+    .border-ens-orange {
+        border-color: var(--ens-orange);
+    }
+
+    .border-ens-blue {
+        border-color: var(--ens-blue);
+    }
+
+    .border-ens-green {
+        border-color: var(--ens-green);
+    }
+
+    .border-ens-red {
+        border-color: var(--ens-red);
+    }
+
+    .border-ens-yellow {
+        border-color: var(--ens-yellow);
+    }
+}
+
+@layer components {
+    .ens-card {
+        @apply bg-white rounded-2xl border shadow-sm;
+        border-color: var(--ens-border);
+    }
+
+    .ens-input {
+        @apply w-full rounded-xl border px-4 py-3 outline-none transition;
+        border-color: var(--ens-border);
+    }
+
+    .ens-input:focus {
+        box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.12);
+        border-color: var(--ens-blue);
+    }
+
+    .ens-btn-primary {
+        @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white transition;
+        background-color: var(--ens-orange);
+    }
+
+    .ens-btn-primary:hover {
+        filter: brightness(0.96);
+    }
+
+    .ens-btn-secondary {
+        @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold transition;
+        background-color: #e2e8f0;
+        color: #334155;
+    }
+
+    .ens-btn-secondary:hover {
+        background-color: #cbd5e1;
+    }
+
+    .ens-section-title {
+        @apply text-xl md:text-2xl font-bold;
+        color: var(--ens-text);
+    }
+
+    .ens-subtitle {
+        @apply text-sm mt-1;
+        color: var(--ens-muted);
+    }
+
+    .ens-table th {
+        @apply text-left text-sm font-semibold px-5 py-4 bg-slate-50;
+        color: #475569;
+    }
+
+    .ens-table td {
+        @apply px-5 py-4 text-sm border-t;
+        border-color: #f1f5f9;
+    }
+}
