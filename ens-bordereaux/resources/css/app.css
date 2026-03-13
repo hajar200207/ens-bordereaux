@@ -41,7 +41,6 @@
     position: relative;
     z-index: 1;
 }
-
 @layer base {
     body {
         background-color: var(--ens-bg);

@@ -25,4 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--y', `${y}px`);
         });
     });
+
+    const cursorDot = document.getElementById('cursor-dot');
+
+    if (cursorDot) {
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.transform = `translate(${e.clientX - 8}px, ${e.clientY - 8}px)`;
+        });
+    }
 });

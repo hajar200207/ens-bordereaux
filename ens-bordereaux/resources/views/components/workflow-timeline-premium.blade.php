@@ -1,47 +1,6 @@
 @props(['steps' => []])
 
 @php
-    $defaultSteps = [
-        [
-            'icon' => '📥',
-            'title' => 'Réception du document',
-            'description' => 'Le secrétariat général a déposé le document dans le système.',
-            'actor' => 'Secrétariat général',
-            'date' => '09/03/2026 - 08:30',
-            'status' => 'done',
-            'comment' => 'Document initial enregistré.',
-        ],
-        [
-            'icon' => '👨‍💼',
-            'title' => 'Décision du directeur',
-            'description' => 'Consultation et orientation du document vers le bon service.',
-            'actor' => 'Directeur',
-            'date' => '09/03/2026 - 09:00',
-            'status' => 'done',
-            'comment' => 'Affecté au service Communication.',
-        ],
-        [
-            'icon' => '🎨',
-            'title' => 'Traitement du service',
-            'description' => 'Le service concerné prépare le livrable demandé.',
-            'actor' => 'Communication',
-            'date' => '09/03/2026 - 10:10',
-            'status' => 'current',
-            'comment' => 'Nouvelle version du poster en préparation.',
-        ],
-        [
-            'icon' => '✅',
-            'title' => 'Validation finale',
-            'description' => 'Le directeur valide ou refuse la version transmise.',
-            'actor' => 'Direction',
-            'date' => 'En attente',
-            'status' => 'pending',
-            'comment' => 'En attente de revue.',
-        ],
-    ];
-
-    $steps = count($steps) ? $steps : $defaultSteps;
-
     $styles = [
         'done' => 'bg-green-100 text-green-700 border-green-200',
         'current' => 'bg-blue-100 text-blue-700 border-blue-200',
