@@ -3,63 +3,107 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\Service;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $users = User::with(['service', 'roles'])
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        $services = Service::where('is_active', true)->orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
+
+        return view('admin.users.create', compact('services', 'roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        $user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'name' => $data['first_name'] . ' ' . $data['last_name'],
+            'email' => $data['email'],
+            'username' => $data['username'] ?? null,
+            'password' => $data['password'],
+            'service_id' => $data['service_id'] ?? null,
+            'is_active' => $data['is_active'] ?? true,
+        ]);
+
+        $user->syncRoles([$data['role']]);
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'Utilisateur créé avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(User $user): View
     {
-        //
+        $user->load(['service', 'roles']);
+
+        return view('admin.users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(User $user): View
     {
-        //
+        $services = Service::where('is_active', true)->orderBy('name')->get();
+        $roles = Role::orderBy('name')->get();
+        $selectedRole = $user->roles->first()?->name;
+
+        return view('admin.users.edit', compact('user', 'services', 'roles', 'selectedRole'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        $updateData = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'name' => $data['first_name'] . ' ' . $data['last_name'],
+            'email' => $data['email'],
+            'username' => $data['username'] ?? null,
+            'service_id' => $data['service_id'] ?? null,
+            'is_active' => $data['is_active'] ?? true,
+        ];
+
+        if (!empty($data['password'])) {
+            $updateData['password'] = $data['password'];
+        }
+
+        $user->update($updateData);
+        $user->syncRoles([$data['role']]);
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(User $user): RedirectResponse
     {
-        //
+        if ($user->id === auth()->id()) {
+            return back()->with('error', 'Vous ne pouvez pas supprimer votre propre compte.');
+        }
+
+        $user->delete();
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'Utilisateur supprimé avec succès.');
     }
 }

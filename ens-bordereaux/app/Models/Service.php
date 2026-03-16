@@ -7,6 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    /** @use HasFactory<\Database\Factories\ServiceFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'code',
+        'description',
+        'is_active',
+    ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

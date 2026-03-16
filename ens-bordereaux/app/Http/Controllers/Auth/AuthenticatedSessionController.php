@@ -28,6 +28,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (!auth()->user()->is_active) {
+            Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return back()->withErrors([
+                'email' => 'Votre compte est désactivé.',
+            ])->onlyInput('email');
+        }
+
+        auth()->user()->update([
+            'last_login_at' => now(),
+        ]);
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
@@ -44,4 +59,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
 }
